@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	body,ul,li,dl,dt,dd,p,ol,h1,h2,h3,h4,h5,h6,form,img,table,fieldset,legend{margin:0; padding:0;}
+
+	#box{width:750px;height:400px;position:relative; margin:100px auto;border: 1px solid black;}
+	#img1{width:300px;height:300px;position:absolute;left:0;top:0;}
+	#slider{width:150px;height:150px;position:absolute;left:0;top:0;background:#CCC;opacity:0.4;cursor: move; filter:alpha(opacity=40);display: none;}
+	#img2{position:absolute;right:0;top:0; width:400px;height:400px;overflow:hidden;display:none;}
+	#Bimg{position:absolute;left:0;top:0;}
+</style>
+</head>
+
+<body>
+ <div id="box">
+    <div id="img1">
+         <img src="small.jpg" width="300" height="300"/>
+         <div id="slider"></div>
+  	</div>
+       
+    <div id="img2">
+        <img src="big.jpg"  id="Bimg"/>
+    </div>
+  
+ </div>
+<script type="text/javascript">
+    var img1 = document.getElementById('img1');
+    var img2 = document.getElementById('img2');
+    var slider = document.getElementById('slider');
+    var Bimg = document.getElementById('Bimg');
+    img1.onmouseover = function(){
+        slider.style.display = 'block';
+        img2.style.display = 'block';
+    }
+    img1.onmouseout = function(){
+        slider.style.display = 'none';
+        img2.style.display = 'none';
+    }
+    img1.onmousemove = function(ev){
+        var ol = ev.clientX - box.offsetLeft - 150/2;
+        var ot = ev.clientY - box.offsetTop - 150/2;
+        ol = ol>150?150:ol<0?0:ol;
+        ot = ot>150?150:ot<0?0:ot;
+        slider.style.left = ol + "px";
+        slider.style.top = ot + "px";
+        var Bl = -(ol * 400)/150;
+        var Bt = -(ot * 400)/150;
+        Bimg.style.left = Bl + "px";
+        Bimg.style.top = Bt + "px";
+    }
+</script>>
+</body>
+</html>
